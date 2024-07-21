@@ -4,28 +4,26 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="style.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 	<title>Music Player</title>
 </head>
 
 <body>
-	<div class="container">
-		<div class="container" id="cont">
-			<input type="file" id="music-file" accept="audio/*" />
-		</div>
-		<div class="imghead">
-			<img src="../assets/ASAP_Rocky_Testing.jpg" alt="Song Img" />
-			<span class="songtitle">Testing</span>
-		</div>
-		<div class="progressbar">
-			<div class="progress html" id="prog">0%</div>
-		</div>
-		<div class="song">
-			<i class="fa-solid fa-pause fa-xl" id="pause"></i>
-			<i class="fa-solid fa-play fa-xl" id="play"></i>
-			<i class="fa-solid fa-volume-high fa-xl" id="volume-high"></i>
-			<i class="fa-solid fa-volume-off fa-xl" id="volume-off"></i>
-		</div>
+	<div class="container-music" id="music">
+		<button class="sort" id="sort">sort</button>
+		<select name="genre" id="genre" class="category">
+			<option value="pop" class="option">pop</option>
+			<option value="rock" class="option">rock</option>
+			<option value="rap" class="option">rap</option>
+			<option value="classical" class="option">classical</option>
+			<option value="electronic" class="option">electronic</option>
+		</select>
+		<ul class="music-list" id="music-list">
+			<li class="list-song"><button class="song" id="song1">slow</button></li>
+			<li class="list-song"><button class="song" id="song2">amalgam</button></li>
+			<li class="list-song"><button class="song" id="song3">trunk</button></li>
+			<li class="list-song"><button class="song" id="song4">movietickets</button></li>
+			<li class="list-song"><button class="song" id="song5">facesofvoices</button></li>
+		</ul>
 	</div>
 	<script src="script.js"></script>
 </body>

@@ -1,29 +1,72 @@
-const music = new Audio();
-music.src = '../music/Amalgam.mp3';
-const play = document.getElementById("play");
-const pause = document.getElementById("pause");
-const vol = document.getElementById("volume-high");
-const volmu = document.getElementById("volume-off");
-const prog = document.getElementById("prog");
-const inpfile = document.getElementById("music-file");
-inpfile.addEventListener("change", function() {
+document.addEventListener('DOMContentLoaded', function() {
+	const ul = document.getElementById('music-list');
+	const li = ul.querySelectorAll('li>button');
+	console.log(li);
+	li.forEach(item => {
+		item.addEventListener('click', function() {
 
-	music.addEventListener("timeupdate", function() {
-		const progress = (music.currentTime / music.duration) * 100;
-		prog.style.width = progress + '%';
-		prog.innerHTML = prog.style.width;
+			const audio = document.createElement('audio');
+			audio.controls = true;
+			const source = document.createElement('source');
+			source.src = setSrcSong(item);
+			audio.appendChild(source);
+			document.body.appendChild(audio);
+		})
+	});
+	const sorter = document.getElementById('sort');
+	const lie = ul.querySelectorAll('li');
+	sorter.addEventListener('click', function() {
+		sort(lie, "button");
 	})
-	pause.addEventListener('click', function() {
-		music.pause();
-	});
-	play.addEventListener('click', function() {
-		music.play();
-	});
-	vol.addEventListener('click', function() {
-		music.volume += 10;
-	});
-	volmu.addEventListener('click', function() {
-		music.volume = 0;
+});
+
+function setSrcSong(element) {
+	if (element.id === 'song1') {
+		return "../music/slow.mp3";
+	}
+	else if (element.id === 'song2') {
+		return "../music/Amalgam.mp3";
+	}
+	else if (element.id === 'song3') {
+		return "../music/trunk.mp3";
+	}
+	else if (element.id === 'song4') {
+		return "../music/Movietickets.mp3";
+	}
+	else if (element.id === 'song5') {
+		return "../music/FacesofVoices.mp3";
+	}
+}
+
+function sort(parentElement, childElement) {
+	var arr = Array.prototype.slice.call(parentElement);
+
+	arr.sort(function(a, b) {
+		console.log(a.querySelector(childElement), b.querySelector(childElement));
+		var aChild = a.querySelector(childElement);
+		var bChild = b.querySelector(childElement);
+		if (aChild.innerHTML < bChild.innerHTML) {
+			return -1;
+		}
+		else if (aChild.innerHTML > bChild.innerHTML) {
+			return 1;
+		}
+		else {
+			return 0;
+		}
 	})
 
-})
+	arr.forEach(item => {
+		console.log(item);
+	})
+	console.log(arr);
+	if (parentElement.length > 0) {
+		var parent = parentElement[0].parentElement;
+		if (parent) {
+			parent.innerHTML = '';
+			arr.forEach(function(el) {
+				parent.appendChild(el);
+			})
+		}
+	}
+}
