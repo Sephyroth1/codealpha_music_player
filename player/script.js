@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
 	const ul = document.getElementById('music-list');
 	const li = ul.querySelectorAll('li>button');
-	console.log(li);
 	li.forEach(item => {
 		item.addEventListener('click', function() {
 
@@ -18,6 +17,12 @@ document.addEventListener('DOMContentLoaded', function() {
 	sorter.addEventListener('click', function() {
 		sort(lie, "button");
 	})
+	const select = document.getElementById('genre');
+	select.addEventListener('click', function() {
+		if (this.value !== 'Select Category') {
+			categorize(this.value);
+		}
+	});
 });
 
 function setSrcSong(element) {
@@ -56,10 +61,6 @@ function sort(parentElement, childElement) {
 		}
 	})
 
-	arr.forEach(item => {
-		console.log(item);
-	})
-	console.log(arr);
 	if (parentElement.length > 0) {
 		var parent = parentElement[0].parentElement;
 		if (parent) {
@@ -69,4 +70,25 @@ function sort(parentElement, childElement) {
 			})
 		}
 	}
+}
+
+function categorize(category) {
+	const list = document.querySelectorAll('.list-song');
+
+	list.forEach(li => {
+		const spans = li.querySelectorAll('p span');
+		let match = false;
+		spans.forEach(span => {
+			if (span.innerHTML === category) {
+				console.log(span);
+				match = true;
+			}
+		})
+		if (match) {
+			li.style.display = 'block';
+		}
+		else {
+			li.style.display = 'none';
+		}
+	})
 }

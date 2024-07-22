@@ -1,0 +1,59 @@
+*{
+	margin: 0;
+	padding: 0;
+	font-size: 1rem;
+}
+
+.img-cover {
+	width: 100px;
+}
+
+.list-song {
+	list-style-type: none;
+	border: 2px solid black;
+	margin: 10px;
+	padding: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	gap: 10px;
+	border-radius: 1.5rem;
+}
+
+.container-music {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.opt {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+}
+
+.song {
+	background-color: blue;
+	color: #fff;
+	width: 75px;
+	border-radius: 0.625rem;
+}
+
+.category {
+	font-size: 0.75rem;
+}
+
+.cat {
+	font-size: 0.75rem;
+}
+
+.sort {
+	background-color: red;
+	width: 75px;
+	color: white;
+	font-size: 1rem;
+	border-radius: 0.625rem;
+}

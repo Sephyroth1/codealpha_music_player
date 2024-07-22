@@ -9,20 +9,73 @@
 
 <body>
 	<div class="container-music" id="music">
-		<button class="sort" id="sort">sort</button>
-		<select name="genre" id="genre" class="category">
-			<option value="pop" class="option">pop</option>
-			<option value="rock" class="option">rock</option>
-			<option value="rap" class="option">rap</option>
-			<option value="classical" class="option">classical</option>
-			<option value="electronic" class="option">electronic</option>
-		</select>
+		<div class="opt">
+			<button class="sort" id="sort">sort</button>
+			<select name="genre" id="genre" class="category">
+				<option value="pop" class="option">pop</option>
+				<option value="rock" class="option">rock</option>
+				<option value="rap" class="option">rap</option>
+				<option value="classical" class="option">classical</option>
+				<option value="electronic" class="option">electronic</option>
+			</select>
+		</div>
 		<ul class="music-list" id="music-list">
-			<li class="list-song"><button class="song" id="song1">slow</button></li>
-			<li class="list-song"><button class="song" id="song2">amalgam</button></li>
-			<li class="list-song"><button class="song" id="song3">trunk</button></li>
-			<li class="list-song"><button class="song" id="song4">movietickets</button></li>
-			<li class="list-song"><button class="song" id="song5">facesofvoices</button></li>
+			<li class="list-song">
+				<img src="https://assets-global.website-files.com/5e6a544cadf84b1393e2e022/611cfe2fe8dfe7fe77ba50c4_cri_000000319870%20(1).jpeg"
+					alt="beatles" class="img-cover">
+				<button class="song" id="song1">slow</button>
+				<p class="category">
+					Category:
+					<span class="cat">pop</span>
+					<span class="cat">rock</span>
+				</p>
+
+
+			</li>
+			<li class="list-song">
+				<img src="https://assets-global.website-files.com/5e6a544cadf84b1393e2e022/61324f878f54e6089a96f331_pink_floyd_dark_side_of_the_moon%20(1).jpeg"
+					alt="pink floyd" class="img-cover">
+				<button class="song" id="song2">amalgam</button>
+				<p class="category">
+					Category:
+					<span class="cat">electronic</span>
+					<span class="cat">rock</span>
+				</p>
+
+			</li>
+			<li class="list-song">
+				<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShGbcnebI_4RTqxM1PyDKQ9Lsk2d_07DX2hQ&s"
+					alt="queen" class="img-cover">
+				<button class="song" id="song3">trunk</button>
+				<p class="category">
+					Category:
+					<span class="cat">electronic</span>
+					<span class="cat">classical</span>
+				</p>
+
+			</li>
+			<li class="list-song">
+				<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOhmcAknJuwg80IvJ48ACFAUWuv4gYb5pN3w&s"
+					alt="weekend" class="img-cover">
+				<button class="song" id="song4">movietickets</button>
+				<p class="category">
+					Category:
+					<span class="cat">classical</span>
+					<span class="cat">rap</span>
+				</p>
+
+			</li>
+			<li class="list-song">
+				<img src="https://i.pinimg.com/736x/48/24/93/48249335e8c3852d59a5a27e054bb8d2.jpg"
+					alt="weekend 2" class="img-cover">
+				<button class="song" id="song5">facesofvoices</button>
+				<p class="category">
+					Category:
+					<span class="cat">rap</span>
+					<span class="cat">pop</span>
+				</p>
+
+			</li>
 		</ul>
 	</div>
 	<script src="script.js"></script>
