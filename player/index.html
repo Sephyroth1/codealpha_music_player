@@ -5,10 +5,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="style.css">
 	<title>Music Player</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
 <body>
-	<div class="container-music" id="music">
+	<div class="container-music" id="musical">
 		<div class="opt">
 			<button class="sort" id="sort">sort</button>
 			<select name="genre" id="genre" class="category">
@@ -35,7 +36,7 @@
 			<li class="list-song">
 				<img src="https://assets-global.website-files.com/5e6a544cadf84b1393e2e022/61324f878f54e6089a96f331_pink_floyd_dark_side_of_the_moon%20(1).jpeg"
 					alt="pink floyd" class="img-cover">
-				<button class="song" id="song2">amalgam</button>
+				<button class="song" id="song2">Amalgam</button>
 				<p class="category">
 					Category:
 					<span class="cat">electronic</span>
@@ -57,7 +58,7 @@
 			<li class="list-song">
 				<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOhmcAknJuwg80IvJ48ACFAUWuv4gYb5pN3w&s"
 					alt="weekend" class="img-cover">
-				<button class="song" id="song4">movietickets</button>
+				<button class="song" id="song4">Movietickets</button>
 				<p class="category">
 					Category:
 					<span class="cat">classical</span>
@@ -68,7 +69,7 @@
 			<li class="list-song">
 				<img src="https://i.pinimg.com/736x/48/24/93/48249335e8c3852d59a5a27e054bb8d2.jpg"
 					alt="weekend 2" class="img-cover">
-				<button class="song" id="song5">facesofvoices</button>
+				<button class="song" id="song5">FacesofVoices</button>
 				<p class="category">
 					Category:
 					<span class="cat">rap</span>
@@ -77,6 +78,21 @@
 
 			</li>
 		</ul>
+	</div>
+	<div class="audio">
+		<div class="cursong" id="songcur">hello</div>
+		<div class="slider" id="progressBar">
+			<div class="curtime"></div>
+			<div class="bar" id="progressFill"></div>
+			<div class="progress-label" id="progressLabel">0%</div>
+			<div class="actualtime"></div>
+		</div>
+		<i class="fa-solid fa-play" id="play"></i>
+		<i class="fa-solid fa-pause" id="pause"></i>
+		<i class="fa-solid fa-forward-fast" id="forward"></i>
+		<i class="fa-solid fa-backward-fast" id="backward"></i>
+		<i class="fa-solid fa-volume-high" id="volup"></i>
+		<i class="fa-solid fa-volume-low" id="voldown"></i>
 	</div>
 	<script src="script.js"></script>
 </body>
