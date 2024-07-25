@@ -2,84 +2,100 @@ document.addEventListener('DOMContentLoaded', function() {
 	const ul = document.getElementById('music-list');
 	const li = ul.querySelectorAll('li>button');
 	const music = new Audio();
-	li.forEach(item => {
-		item.addEventListener('click', function() {
-			music.src = `../music/${item.innerHTML}.mp3`;
-			const cur = document.getElementById('songcur');
-			const regex = /\/([^\/]+)\.[a-zA-Z0-9]+$/;
-			const match = music.src.match(regex);
-			console.log(match);
-			if (match) {
-				cur.textContent = `${match[1]}`;
-			}
-			music.play();
-		})
-	});
+	const div = document.getElementById('mus');
 	const sorter = document.getElementById('sort');
 	const lie = ul.querySelectorAll('li');
-	sorter.addEventListener('click', function() {
-		sort(lie, "button");
-	})
 	const select = document.getElementById('genre');
-	select.addEventListener('click', function() {
-		if (this.value !== 'Select Category') {
-			categorize(this.value);
-		}
-	});
 	const slide = document.getElementById('progressFill');
 	const slidelabel = document.getElementById('progressLabel');
-	music.addEventListener('play', function() {
-		updateProgressbar(music, slide, slidelabel);
-	})
-
 	const play = document.getElementById('play');
 	const pause = document.getElementById('pause');
 	const nextrack = document.getElementById('forward');
 	const prevtrack = document.getElementById('backward');
 	const volumehigh = document.getElementById('volup');
 	const volumelow = document.getElementById('voldown');
+	const container = document.getElementById('musical');
+	const menu = document.getElementById('menu');
+	const his = document.getElementById('history');
+	const xmark = document.getElementById('xmark');
+	var song_played = [];
 	var song_srcs = ["../music/Amalgam.mp3", "../music/FacesofVoices.mp3", "../music/Movietickets.mp3", "../music/trunk.mp3", "../music/slow.mp3"].map(toAbsoluteUrl);
-	console.log(song_srcs)
-	play.addEventListener('click', function() {
-		playMusic(music);
+	his.addEventListener('click', function() {
+		const divhis = document.getElementById('hist');
+		console.log(divhis);
+		song_played.forEach(song => {
+			const tmp = document.createElement('p');
+			tmp.textContent = song[1];
+			divhis.appendChild(tmp);
+		})
 	})
-	pause.addEventListener('click', () => {
-		pauseMusic(music);
-	})
-	nextrack.addEventListener('click', function() {
-		console.log(music.src);
-		nextTrack(music, song_srcs);
-	})
+	menu.addEventListener('click', function() {
+		container.style.display = (container.style.display === 'none') ? 'block' : 'none';
+		li.forEach(item => {
+			item.addEventListener('click', function() {
+				div.style.display = 'block';
 
-	prevtrack.addEventListener('click', function() {
-		prevTrack(music, song_srcs);
-	})
+				music.src = `../music/${item.innerHTML}.mp3`;
+				music.load();
+				const cur = document.getElementById('songcur');
+				const regex = /\/([^\/]+)\.[a-zA-Z0-9]+$/;
+				const match = music.src.match(regex);
+				if (match) {
+					cur.textContent = `${match[1]}`;
+					song_played.push(match);
+				}
+				if (music.readyState >= 3) {
+					music.play();
+				}
+				else {
+					music.addEventListener('canplay', function() {
+						music.play();
+					}, { once: true })
+				}
+			})
+		});
+		sorter.addEventListener('click', function() {
+			sort(lie, "button");
+		})
+		select.addEventListener('click', function() {
+			if (this.value !== 'Select Category') {
+				categorize(this.value);
+			}
+		});
 
-	volumehigh.addEventListener('click', function() {
-		volumeup(music);
-	})
-	volumelow.addEventListener('click', function() {
-		volumedown(music);
+		music.addEventListener('play', function() {
+			updateProgressbar(music, slide, slidelabel);
+
+			play.addEventListener('click', function() {
+				playMusic(music);
+			})
+			pause.addEventListener('click', () => {
+				pauseMusic(music);
+			})
+			nextrack.addEventListener('click', function() {
+				nextTrack(music, song_srcs, song_played);
+			})
+
+			prevtrack.addEventListener('click', function() {
+				prevTrack(music, song_srcs, song_played);
+			})
+
+			volumehigh.addEventListener('click', function() {
+				volumeup(music);
+			})
+			volumelow.addEventListener('click', function() {
+				volumedown(music);
+			})
+
+		});
+	});
+	xmark.addEventListener('click', function() {
+		div.style.display = 'none';
+		music.pause();
+		music.currentTime = 0;
 	})
 });
 
-function setSrcSong(element) {
-	if (element.id === 'song1') {
-		return "../music/slow.mp3";
-	}
-	else if (element.id === 'song2') {
-		return "../music/Amalgam.mp3";
-	}
-	else if (element.id === 'song3') {
-		return "../music/trunk.mp3";
-	}
-	else if (element.id === 'song4') {
-		return "../music/Movietickets.mp3";
-	}
-	else if (element.id === 'song5') {
-		return "../music/FacesofVoices.mp3";
-	}
-}
 
 function sort(parentElement, childElement) {
 	var arr = Array.prototype.slice.call(parentElement);
@@ -118,7 +134,6 @@ function categorize(category) {
 		let match = false;
 		spans.forEach(span => {
 			if (span.innerHTML === category) {
-				console.log(span);
 				match = true;
 			}
 		})
@@ -134,9 +149,13 @@ function categorize(category) {
 function updateProgressbar(music, progressBar, progressLabel) {
 	const interval = setInterval(() => {
 		if (!music.paused) {
+			const curtime = document.getElementById('curtimes');
+			const acttimes = document.getElementById('acttimes');
 			const progress = (music.currentTime / music.duration) * 100;
 			progressBar.style.width = `${progress}%`;
 			progressLabel.textContent = `${Math.round(progress)}`;
+			curtime.innerHTML = `${Math.round(music.currentTime)}`;
+			acttimes.innerHTML = `${Math.round(music.duration)}`;
 		}
 		else {
 			clearInterval(interval);
@@ -152,7 +171,7 @@ function pauseMusic(music) {
 	music.pause();
 }
 
-function nextTrack(music, list) {
+function nextTrack(music, list, songs) {
 	const ind = list.indexOf(music.src);
 	music.src = list[(ind + 1) % list.length];
 	const cur = document.getElementById('songcur');
@@ -160,24 +179,39 @@ function nextTrack(music, list) {
 	const match = music.src.match(regex);
 	if (match) {
 		cur.textContent = `${match[1]}`;
+		songs.push(match);
 	}
-	music.play().catch(error => {
-		console.error("error playing song");
-	})
+	if (music.readyState >= 3) {
+		music.play();
+	}
+	else {
+		music.addEventListener('canplay', function() {
+			music.play();
+		}, { once: true })
+	}
 }
 
-function prevTrack(music, list) {
+function prevTrack(music, list, songs) {
 	const ind = list.indexOf(music.src);
 	music.src = list[(ind - 1) % list.length];
+	if (ind === 0) {
+		music.src = list[list.length - 1];
+	}
 	const cur = document.getElementById('songcur');
 	const regex = /\/([^\/]+)\.[a-zA-Z0-9]+$/;
 	const match = music.src.match(regex);
 	if (match) {
 		cur.textContent = `${match[1]}`;
+		songs.push(match);
 	}
-	music.play().catch(error => {
-		console.error("error playing song");
-	})
+	if (music.readyState >= 3) {
+		music.play();
+	}
+	else {
+		music.addEventListener('canplay', function() {
+			music.play();
+		}, { once: true })
+	}
 }
 
 function volumeup(music) {

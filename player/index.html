@@ -9,7 +9,12 @@
 </head>
 
 <body>
-	<div class="container-music" id="musical">
+	<main class="menupage">
+		<h1 class="mus_player">Music Player</h1>
+		<i class="fa-solid fa-bars fa-xl" id="menu"></i>
+		<h2 class="histories" id="history">history</h2>
+	</main>
+	<section class="container-music" id="musical">
 		<div class="opt">
 			<button class="sort" id="sort">sort</button>
 			<select name="genre" id="genre" class="category">
@@ -78,23 +83,25 @@
 
 			</li>
 		</ul>
-	</div>
-	<div class="audio">
-		<div class="cursong" id="songcur">hello</div>
+	</section>
+	<div class="audio" id="mus">
+		<i class="fa-solid fa-xmark" id="xmark"></i>
+		<div class="cursong" id="songcur"></div>
 		<div class="slider" id="progressBar">
-			<div class="curtime"></div>
+			<div class="curtime" id="curtimes"></div>
 			<div class="bar" id="progressFill"></div>
 			<div class="progress-label" id="progressLabel">0%</div>
-			<div class="actualtime"></div>
+			<div class="actualtime" id="acttimes"></div>
 		</div>
-		<i class="fa-solid fa-play" id="play"></i>
-		<i class="fa-solid fa-pause" id="pause"></i>
-		<i class="fa-solid fa-forward-fast" id="forward"></i>
-		<i class="fa-solid fa-backward-fast" id="backward"></i>
-		<i class="fa-solid fa-volume-high" id="volup"></i>
-		<i class="fa-solid fa-volume-low" id="voldown"></i>
+		<div class="but-mus">
+			<i class="fa-solid fa-play fa-lg" id="play"></i>
+			<i class="fa-solid fa-pause fa-lg" id="pause"></i>
+			<i class="fa-solid fa-forward-fast fa-lg" id="forward"></i>
+			<i class="fa-solid fa-backward-fast fa-lg" id="backward"></i>
+			<i class="fa-solid fa-volume-high fa-lg" id="volup"></i>
+			<i class="fa-solid fa-volume-low fa-lg" id="voldown"></i>
+		</div>
 	</div>
+	<div class="history" id="hist"></div>
 	<script src="script.js"></script>
 </body>
-
-</html>

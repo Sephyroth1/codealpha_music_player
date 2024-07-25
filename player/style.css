@@ -10,7 +10,7 @@
 
 .list-song {
 	list-style-type: none;
-	border: 2px solid black;
+	border: 0px;
 	margin: 10px;
 	padding: 10px;
 	display: flex;
@@ -19,6 +19,7 @@
 	flex-direction: column;
 	gap: 10px;
 	border-radius: 1.5rem;
+	background-color: #e5e5e5;
 }
 
 .music-list {
@@ -28,10 +29,14 @@
 	flex-wrap: wrap;
 }
 .container-music {
-	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
+	display: none;
+}
+
+.container-music:hover {
+	cursor: pointer;
 }
 
 .opt {
@@ -42,8 +47,16 @@
 }
 
 .song {
-	background-color: #0ff;
-	width: 100px;
+	background-color: lightblue;
+	width: 125px;
+	border: 0px;
+	color: white;
+}
+
+.song:hover{
+	background-color: #e5e5e5;
+	color: #000;
+	cursor: pointer;
 }
 
 .category {
@@ -55,30 +68,38 @@
 }
 
 .sort {
-	background-color: red;
 	width: 75px;
-	color: white;
-	font-size: 1rem;
+	font-size: 1.5rem;
+	background-color: skyblue;
+	color: #fff;
+	border: 0px;
 	border-radius: 0.625rem;
+	cursor: pointer;
+}
+
+.sort:hover {
+	background-color: #e5e5e5;
+	color: #000;
 }
 
 .list-song:hover {
-	background-color: #E5E5E5;
+	background-color: #fff;
+	cursor: pointer;
 }
 
 .slider {
-    width: 70%;
+    width: 100%;
     height: 20px;
-    background: #eee;
     border-radius: 10px;
     overflow: hidden;
     margin-top: 10px;
     position: relative;
+    background-color: #fff;
 }
 .slider .bar {
     height: 100%;
     background: #4CAF50;
-    width: 0; /* Start with 0 width and expand */
+    width: 0;
     transition: width 0.1s ease-in-out;
 }
 .progress-label {
@@ -88,4 +109,126 @@
     transform: translate(-50%, -50%);
     color: #333;
     font-size: 12px;
+}
+
+.audio {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	flex-direction: column;
+	width: 500px;
+	height: 150px;
+	display: none;
+	background-color: #eee;
+	border: 0px;
+	position: relative;
+}
+
+body {
+	height: 100%;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	flex-direction: column;
+}
+
+.menupage {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 20px;
+}
+
+.mus_player {
+	font-size: 1.5rem;
+	color: ;
+	border: 2px solid black;
+	padding: 10px;
+	border-radius: 1rem;
+}
+
+.mus_player:hover {
+	background-color: #e5e5e5;
+	border: 0px;
+	transition: background-color 0.5s ease-in-out;
+	color: white;
+}
+
+#menu:hover {
+	cursor: pointer;
+	padding: 15px;
+	border-radius: 2rem;
+	background-color: #E5E5E5;
+	transition: padding 0.5s ease-in-out;
+}
+
+.but-mus {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 10px;
+	gap: 10px;
+	border: 0px;
+	padding: 10px;
+	border-radius: 1.5rem;
+	background-color: #fff;
+}
+
+.but-mus:hover {
+	padding: 25px;
+	transition: padding 0.5s ease-in-out;
+}
+
+#play,
+#pause,
+#forward,
+#backward,
+#volup,
+#voldown{
+	background-color: lightblue;
+	padding: 10px;
+	border-radius: 100%;
+}
+
+
+#play:hover,
+#pause:hover,
+#forward:hover,
+#backward:hover,
+#volup:hover,
+#voldown:hover{
+	background-color: grey;
+	color: #fff;
+}
+.cursong {
+	text-align: center;
+}
+
+#xmark {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	border: 0px;
+	border-radius: 100%;
+	background-color: #fff;
+	padding: 5px;
+}
+
+#xmark:hover {
+	background-color: lightblue;
+	color: white;
+}
+
+.histories {
+	border: 0px;
+	padding: 10px;
+	border-radius: 1rem;
+	background-color: skyblue;
+	color: white;
+}
+
+.histories:hover {
+	background-color: #fff;
+	cursor: pointer;
+	color: #000;
 }
